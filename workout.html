@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="My Routine">
+  <title>My Routine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --push: #e8533a;
+      --pull: #3a7de8;
+      --bg: #080808;
+      --card: #111111;
+      --card2: #161616;
+      --border: #1f1f1f;
+      --text: #ffffff;
+      --muted: #888888;
+      --dim: #444444;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior: none;
+    }
+
+    body {
+      padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+    }
+
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    /* Header */
+    .header { margin-bottom: 28px; }
+    .header-eyebrow {
+      font-size: 10px; letter-spacing: 4px; color: var(--dim);
+      text-transform: uppercase; margin-bottom: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .header h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 38px; font-weight: 900; letter-spacing: -1px;
+      line-height: 1; margin-bottom: 6px;
+    }
+    .header p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* Schedule */
+    .section-label {
+      font-size: 10px; letter-spacing: 3px; color: var(--dim);
+      text-transform: uppercase; margin-bottom: 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .schedule { display: flex; gap: 5px; margin-bottom: 8px; }
+    .schedule-day {
+      flex: 1; text-align: center; border-radius: 8px; padding: 8px 2px;
+      transition: all 0.2s;
+    }
+    .schedule-day .d-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--dim); margin-bottom: 4px;
+    }
+    .schedule-day .d-type {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 900; letter-spacing: 0.5px;
+    }
+    .schedule-day.rest { background: var(--card); border: 1px solid var(--border); }
+    .schedule-day.rest .d-type { color: #2a2a2a; }
+    .schedule-day.push { background: rgba(232,83,58,0.12); border: 1px solid rgba(232,83,58,0.3); }
+    .schedule-day.push .d-type { color: var(--push); }
+    .schedule-day.pull { background: rgba(58,125,232,0.12); border: 1px solid rgba(58,125,232,0.3); }
+    .schedule-day.pull .d-type { color: var(--pull); }
+    .schedule-legend { font-size: 11px; color: var(--dim); margin-bottom: 24px; }
+    .schedule-legend span { font-weight: 800; }
+
+    /* Day selector */
+    .day-selector { display: flex; gap: 10px; margin-bottom: 20px; }
+    .day-btn {
+      flex: 1; padding: 14px 8px; border-radius: 14px; border: 2px solid transparent;
+      cursor: pointer; transition: all 0.2s; font-family: 'Barlow', sans-serif;
+      text-align: center;
+    }
+    .day-btn .btn-emoji { font-size: 22px; margin-bottom: 4px; }
+    .day-btn .btn-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px; font-weight: 900; display: block; letter-spacing: 0.5px;
+    }
+    .day-btn .btn-sub { font-size: 11px; font-weight: 600; opacity: 0.75; margin-top: 2px; }
+    .day-btn.push-btn { background: rgba(232,83,58,0.15); border-color: rgba(232,83,58,0.4); color: var(--push); }
+    .day-btn.push-btn.active { background: var(--push); border-color: var(--push); color: #fff; }
+    .day-btn.pull-btn { background: rgba(58,125,232,0.15); border-color: rgba(58,125,232,0.4); color: var(--pull); }
+    .day-btn.pull-btn.active { background: var(--pull); border-color: var(--pull); color: #fff; }
+
+    /* Day heading */
+    .day-heading { margin-bottom: 14px; }
+    .day-heading h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 26px; font-weight: 900; letter-spacing: 0.5px;
+    }
+    .day-heading p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+    /* Exercise card */
+    .ex-card {
+      background: var(--card); border-radius: 14px; margin-bottom: 10px;
+      border: 1px solid var(--border); overflow: hidden; transition: border-color 0.2s;
+    }
+    .ex-card.open-push { border-color: rgba(232,83,58,0.35); }
+    .ex-card.open-pull { border-color: rgba(58,125,232,0.35); }
+
+    .ex-header {
+      width: 100%; background: none; border: none; padding: 14px 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; color: var(--text); font-family: 'Barlow', sans-serif;
+      text-align: left;
+    }
+    .ex-name {
+      font-weight: 800; font-size: 15px; letter-spacing: 0.2px; margin-bottom: 4px;
+    }
+    .ex-meta { font-size: 11px; color: var(--muted); }
+    .ex-muscles { font-weight: 700; }
+    .ex-chevron {
+      font-size: 20px; transition: transform 0.25s; flex-shrink: 0; margin-left: 8px;
+    }
+    .ex-chevron.open { transform: rotate(180deg); }
+
+    .ex-body {
+      display: none; padding: 0 16px 18px; border-top: 1px solid var(--border);
+    }
+    .ex-body.visible { display: block; }
+
+    .ex-section-label {
+      font-size: 10px; letter-spacing: 2px; color: var(--dim);
+      text-transform: uppercase; margin: 14px 0 8px;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    }
+    .ex-description { font-size: 13px; color: #c0c0c0; line-height: 1.65; }
+
+    .steps { list-style: none; }
+    .steps li {
+      display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start;
+    }
+    .step-num {
+      min-width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; flex-shrink: 0; margin-top: 1px;
+    }
+    .step-num.push { background: rgba(232,83,58,0.2); color: var(--push); border: 1px solid rgba(232,83,58,0.4); }
+    .step-num.pull { background: rgba(58,125,232,0.2); color: var(--pull); border: 1px solid rgba(58,125,232,0.4); }
+    .step-text { font-size: 13px; color: #aaa; line-height: 1.55; }
+
+    .form-tip {
+      border-radius: 8px; padding: 11px 13px; margin-top: 14px;
+      font-size: 13px; color: #bbb; line-height: 1.55;
+      background: var(--card2);
+    }
+    .form-tip.push { border-left: 3px solid var(--push); }
+    .form-tip.pull { border-left: 3px solid var(--pull); }
+    .form-tip strong { color: #fff; }
+
+    /* Set tracker */
+    .set-tracker { margin-top: 14px; }
+    .sets-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+    .set-btn {
+      width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+      font-size: 14px; font-weight: 800; transition: all 0.15s;
+      font-family: 'Barlow', sans-serif; flex-shrink: 0;
+    }
+    .set-btn.idle { background: transparent; border: 2px solid var(--dim); color: var(--dim); }
+    .set-btn.done-push { background: var(--push); border: 2px solid var(--push); color: #fff; }
+    .set-btn.done-pull { background: var(--pull); border: 2px solid var(--pull); color: #fff; }
+    .sets-count { font-size: 12px; color: var(--muted); margin-left: 4px; }
+
+    /* Walk & tips */
+    .walk-card, .tips-card {
+      background: var(--card); border-radius: 14px; padding: 14px 16px;
+      border: 1px solid var(--border); margin-top: 12px;
+    }
+    .walk-inner { display: flex; align-items: center; gap: 12px; }
+    .walk-emoji { font-size: 30px; flex-shrink: 0; }
+    .walk-title { font-weight: 800; font-size: 15px; margin-bottom: 3px; }
+    .walk-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .tips-title { font-weight: 800; font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .tip-item {
+      font-size: 12px; color: var(--muted); margin-bottom: 7px;
+      padding-left: 10px; border-left: 2px solid var(--border); line-height: 1.5;
+    }
+
+    /* Page fade-in */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .app { animation: fadeUp 0.4s ease both; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-eyebrow">Dumbbell Program</div>
+    <h1>Your Routine</h1>
+    <p>4×/week lifting &nbsp;·&nbsp; Daily walking &nbsp;·&nbsp; Keep the size, lose the gut</p>
+  </div>
+
+  <!-- Schedule -->
+  <div class="section-label">Weekly Schedule</div>
+  <div class="schedule">
+    <div class="schedule-day rest"><div class="d-label">Mon</div><div class="d-type">—</div></div>
+    <div class="schedule-day push"><div class="d-label">Tue</div><div class="d-type">A</div></div>
+    <div class="schedule-day rest"><div class="d-label">Wed</div><div class="d-type">—</div></div>
+    <div class="schedule-day pull"><div class="d-label">Thu</div><div class="d-type">B</div></div>
+    <div class="schedule-day rest"><div class="d-label">Fri</div><div class="d-type">—</div></div>
+    <div class="schedule-day push"><div class="d-label">Sat</div><div class="d-type">A</div></div>
+    <div class="schedule-day pull"><div class="d-label">Sun</div><div class="d-type">B</div></div>
+  </div>
+  <div class="schedule-legend">
+    <span style="color:var(--push)">A</span> = Push &nbsp;&nbsp;
+    <span style="color:var(--pull)">B</span> = Pull
+  </div>
+  <div id="today-banner" style="margin-bottom:20px;padding:12px 14px;border-radius:12px;font-size:14px;font-weight:700;text-align:center;"></div>
+
+  <!-- Day Selector -->
+  <div class="day-selector">
+    <button class="day-btn push-btn active" onclick="switchDay('A')">
+      <div class="btn-emoji">💪</div>
+      <span class="btn-label">Day A</span>
+      <div class="btn-sub">Push</div>
+    </button>
+    <button class="day-btn pull-btn" onclick="switchDay('B')">
+      <div class="btn-emoji">🏋️</div>
+      <span class="btn-label">Day B</span>
+      <div class="btn-sub">Pull</div>
+    </button>
+  </div>
+
+  <!-- Day A -->
+  <div id="day-A">
+    <div class="day-heading">
+      <h2 style="color:var(--push)">Push Day</h2>
+      <p>Shoulders · Chest · Triceps &nbsp;·&nbsp; Tap any exercise to see how to do it</p>
+    </div>
+
+    <!-- Shoulder Press -->
+    <div class="ex-card" id="card-shoulder-press">
+      <button class="ex-header" onclick="toggleEx('shoulder-press','push')">
+        <div>
+          <div class="ex-name">Dumbbell Shoulder Press</div>
+          <div class="ex-meta">4 sets · 8–12 reps · Rest 60s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Shoulders · Triceps</span></div>
+        </div>
+        <div class="ex-chevron" id="chev-shoulder-press">▾</div>
+      </button>
+      <div class="ex-body" id="body-shoulder-press">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Sit on a chair or stand with your feet shoulder-width apart. Hold a dumbbell in each hand at shoulder height, palms facing forward, elbows bent at 90°. Press both dumbbells straight up overhead until your arms are nearly straight — don't lock out. Slowly lower back to shoulder height. That's one rep.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num push">1</div><div class="step-text">Start seated or standing, dumbbells at shoulder height</div></li>
+          <li><div class="step-num push">2</div><div class="step-text">Elbows at 90°, palms facing forward</div></li>
+          <li><div class="step-num push">3</div><div class="step-text">Press straight up until arms are nearly straight</div></li>
+          <li><div class="step-num push">4</div><div class="step-text">Lower slowly back to start</div></li>
+        </ul>
+        <div class="form-tip push">💡 <strong>Form tip:</strong> Last 2 reps should be a real grind.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-shoulder-press">
+            <button class="set-btn idle" onclick="toggleSet('shoulder-press',0,'push')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('shoulder-press',1,'push')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('shoulder-press',2,'push')">3</button>
+            <button class="set-btn idle" onclick="toggleSet('shoulder-press',3,'push')">4</button>
+            <span class="sets-count" id="count-shoulder-press">0/4 done</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lateral Raises -->
+    <div class="ex-card" id="card-lateral-raises">
+      <button class="ex-header" onclick="toggleEx('lateral-raises','push')">
+        <div>
+          <div class="ex-name">Lateral Raises</div>
+          <div class="ex-meta">3 sets · 12–15 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Side Shoulders</span></div>
+        </div>
+        <div class="ex-chevron" id="chev-lateral-raises">▾</div>
+      </button>
+      <div class="ex-body" id="body-lateral-raises">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Stand with a dumbbell in each hand at your sides, palms facing your body. Keep a slight bend in your elbows. Raise both arms out to the sides simultaneously until they're level with your shoulders — like you're pouring out two jugs of water. Pause briefly at the top, then lower slowly.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num push">1</div><div class="step-text">Stand tall, dumbbells at your sides</div></li>
+          <li><div class="step-num push">2</div><div class="step-text">Slight bend in elbows, palms facing in</div></li>
+          <li><div class="step-num push">3</div><div class="step-text">Raise arms out to the sides to shoulder height</div></li>
+          <li><div class="step-num push">4</div><div class="step-text">Hold 1 second at top, lower slowly</div></li>
+        </ul>
+        <div class="form-tip push">💡 <strong>Form tip:</strong> Raise to shoulder height only — going higher shifts the work off your shoulders.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-lateral-raises">
+            <button class="set-btn idle" onclick="toggleSet('lateral-raises',0,'push')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('lateral-raises',1,'push')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('lateral-raises',2,'push')">3</button>
+            <span class="sets-count" id="count-lateral-raises">0/3 done</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floor Press -->
+    <div class="ex-card" id="card-floor-press">
+      <button class="ex-header" onclick="toggleEx('floor-press','push')">
+        <div>
+          <div class="ex-name">Floor Press</div>
+          <div class="ex-meta">4 sets · 8–12 reps · Rest 60s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Chest · Triceps · Shoulders</span></div>
+        </div>
+        <div class="ex-chevron" id="chev-floor-press">▾</div>
+      </button>
+      <div class="ex-body" id="body-floor-press">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Lie flat on your back on the floor with your knees bent and feet flat. Hold a dumbbell in each hand at chest level, elbows resting on the floor. Press both dumbbells up and slightly inward until your arms are straight. Lower slowly until your elbows touch the floor again.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num push">1</div><div class="step-text">Lie on your back, knees bent, feet flat on floor</div></li>
+          <li><div class="step-num push">2</div><div class="step-text">Dumbbells at chest height, elbows resting on floor</div></li>
+          <li><div class="step-num push">3</div><div class="step-text">Press up and slightly inward until arms are straight</div></li>
+          <li><div class="step-num push">4</div><div class="step-text">Lower until elbows tap the floor — that's one rep</div></li>
+        </ul>
+        <div class="form-tip push">💡 <strong>Form tip:</strong> This is your bench press replacement — works just as well at home.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-floor-press">
+            <button class="set-btn idle" onclick="toggleSet('floor-press',0,'push')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('floor-press',1,'push')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('floor-press',2,'push')">3</button>
+            <button class="set-btn idle" onclick="toggleSet('floor-press',3,'push')">4</button>
+            <span class="sets-count" id="count-floor-press">0/4 done</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overhead Tricep Extension -->
+    <div class="ex-card" id="card-tricep-ext">
+      <button class="ex-header" onclick="toggleEx('tricep-ext','push')">
+        <div>
+          <div class="ex-name">Overhead Tricep Extension</div>
+          <div class="ex-meta">3 sets · 10–12 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Triceps</span></div>
+        </div>
+        <div class="ex-chevron" id="chev-tricep-ext">▾</div>
+      </button>
+      <div class="ex-body" id="body-tricep-ext">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Sit or stand. Hold one dumbbell with both hands, cupping the top plate, and lift it overhead with arms straight. Keeping your upper arms still and close to your head, bend at the elbows to slowly lower the dumbbell behind your head. When you feel a stretch in your triceps, press back up to straight arms.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num push">1</div><div class="step-text">Hold one dumbbell with both hands overhead</div></li>
+          <li><div class="step-num push">2</div><div class="step-text">Upper arms stay still and close to your head</div></li>
+          <li><div class="step-num push">3</div><div class="step-text">Bend elbows to lower weight behind your head</div></li>
+          <li><div class="step-num push">4</div><div class="step-text">Press back up to straight arms</div></li>
+        </ul>
+        <div class="form-tip push">💡 <strong>Form tip:</strong> Keep your elbows pointed forward — don't let them flare out to the sides.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-tricep-ext">
+            <button class="set-btn idle" onclick="toggleSet('tricep-ext',0,'push')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('tricep-ext',1,'push')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('tricep-ext',2,'push')">3</button>
+            <span class="sets-count" id="count-tricep-ext">0/3 done</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day B -->
+  <div id="day-B" style="display:none">
+    <div class="day-heading">
+      <h2 style="color:var(--pull)">Pull Day</h2>
+      <p>Back · Biceps &nbsp;·&nbsp; Tap any exercise to see how to do it</p>
+    </div>
+
+    <!-- Bent-Over Rows -->
+    <div class="ex-card" id="card-rows">
+      <button class="ex-header" onclick="toggleEx('rows','pull')">
+        <div>
+          <div class="ex-name">Bent-Over Rows</div>
+          <div class="ex-meta">4 sets · 8–12 reps · Rest 60s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Back · Biceps</span></div>
+        </div>
+        <div class="ex-chevron" id="chev-rows">▾</div>
+      </button>
+      <div class="ex-body" id="body-rows">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Stand with feet shoulder-width apart, a dumbbell in each hand. Push your hips back and hinge forward until your torso is roughly 45° to the floor — like you're about to pick something up off a low table. Let the dumbbells hang straight down. Pull both dumbbells up toward your hips, squeezing your shoulder blades together at the top. Lower slowly.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num pull">1</div><div class="step-text">Stand feet shoulder-width, dumbbells in hand</div></li>
+          <li><div class="step-num pull">2</div><div class="step-text">Hinge forward at hips ~45°, back flat</div></li>
+          <li><div class="step-num pull">3</div><div class="step-text">Let dumbbells hang straight down</div></li>
+          <li><div class="step-num pull">4</div><div class="step-text">Pull up toward your hips, squeeze shoulder blades</div></li>
+          <li><div class="step-num pull">5</div><div class="step-text">Lower slowly and repeat</div></li>
+        </ul>
+        <div class="form-tip pull">💡 <strong>Form tip:</strong> Pull toward your hip, not your chest — that keeps the back muscles doing the work.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-rows">
+            <button class="set-btn idle" onclick="toggleSet('rows',0,'pull')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('rows',1,'pull')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('rows',2,'pull')">3</button>
+            <button class="set-btn idle" onclick="toggleSet('rows',3,'pull')">4</button>
+            <span class="sets-count" id="count-rows">0/4 done</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bicep Curls -->
+    <div class="ex-card" id="card-bicep-curls">
+      <button class="ex-header" onclick="toggleEx('bicep-curls','pull')">
+        <div>
+          <div class="ex-name">Bicep Curls</div>
+          <div class="ex-meta">3 sets · 10–12 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Biceps</span></div>
+        </div>
+        <div class="ex-chevron" id="chev-bicep-curls">▾</div>
+      </button>
+      <div class="ex-body" id="body-bicep-curls">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Stand with feet shoulder-width apart, a dumbbell in each hand, arms hanging at your sides with palms facing forward. Keeping your upper arms completely still against your sides, curl both dumbbells up toward your shoulders by bending at the elbow. Squeeze your bicep at the top, then lower slowly all the way back down.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num pull">1</div><div class="step-text">Stand tall, dumbbells at sides, palms forward</div></li>
+          <li><div class="step-num pull">2</div><div class="step-text">Pin your upper arms against your sides — they don't move</div></li>
+          <li><div class="step-num pull">3</div><div class="step-text">Curl both dumbbells up to your shoulders</div></li>
+          <li><div class="step-num pull">4</div><div class="step-text">Squeeze at the top, then lower all the way down</div></li>
+        </ul>
+        <div class="form-tip pull">💡 <strong>Form tip:</strong> Don't swing your back — if you have to rock to lift it, the weight is too heavy.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-bicep-curls">
+            <button class="set-btn idle" onclick="toggleSet('bicep-curls',0,'pull')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('bicep-curls',1,'pull')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('bicep-curls',2,'pull')">3</button>
+            <span class="sets-count" id="count-bicep-curls">0/3 done</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hammer Curls -->
+    <div class="ex-card" id="card-hammer-curls">
+      <button class="ex-header" onclick="toggleEx('hammer-curls','pull')">
+        <div>
+          <div class="ex-name">Hammer Curls</div>
+          <div class="ex-meta">3 sets · 10–12 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Outer Biceps · Forearms</span></div>
+        </div>
+        <div class="ex-chevron" id="chev-hammer-curls">▾</div>
+      </button>
+      <div class="ex-body" id="body-hammer-curls">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Same starting position as a regular curl, but rotate your wrists so your palms face each other — thumbs pointing up, like you're holding hammers. Keeping upper arms still, curl both dumbbells up to your shoulders. Lower slowly. The neutral grip shifts work to the outer bicep and forearms, giving your arms that fuller look.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num pull">1</div><div class="step-text">Stand tall, dumbbells at sides, thumbs pointing up</div></li>
+          <li><div class="step-num pull">2</div><div class="step-text">Upper arms stay pinned to your sides</div></li>
+          <li><div class="step-num pull">3</div><div class="step-text">Curl up to shoulder height</div></li>
+          <li><div class="step-num pull">4</div><div class="step-text">Lower slowly all the way down</div></li>
+        </ul>
+        <div class="form-tip pull">💡 <strong>Form tip:</strong> Same motion as a regular curl, just with thumbs up. Hits a different part of the bicep.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-hammer-curls">
+            <button class="set-btn idle" onclick="toggleSet('hammer-curls',0,'pull')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('hammer-curls',1,'pull')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('hammer-curls',2,'pull')">3</button>
+            <span class="sets-count" id="count-hammer-curls">0/3 done</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rear Delt Fly -->
+    <div class="ex-card" id="card-rear-delt">
+      <button class="ex-header" onclick="toggleEx('rear-delt','pull')">
+        <div>
+          <div class="ex-name">Rear Delt Fly</div>
+          <div class="ex-meta">3 sets · 12–15 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Rear Shoulders · Upper Back</span></div>
+        </div>
+        <div class="ex-chevron" id="chev-rear-delt">▾</div>
+      </button>
+      <div class="ex-body" id="body-rear-delt">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Stand with feet shoulder-width apart. Hinge forward at the hips until your torso is nearly parallel to the floor — more bent than the row. Let the dumbbells hang below your chest with a slight bend in your elbows. Raise both arms out to the sides like wings — leading with your elbows — until they're level with your shoulders. Lower slowly.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num pull">1</div><div class="step-text">Hinge forward — torso nearly parallel to floor</div></li>
+          <li><div class="step-num pull">2</div><div class="step-text">Dumbbells hang below your chest, slight elbow bend</div></li>
+          <li><div class="step-num pull">3</div><div class="step-text">Raise arms out to sides like wings</div></li>
+          <li><div class="step-num pull">4</div><div class="step-text">Squeeze shoulder blades at the top</div></li>
+          <li><div class="step-num pull">5</div><div class="step-text">Lower slowly</div></li>
+        </ul>
+        <div class="form-tip pull">💡 <strong>Form tip:</strong> Light weight here — most people go too heavy and their back takes over.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-rear-delt">
+            <button class="set-btn idle" onclick="toggleSet('rear-delt',0,'pull')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('rear-delt',1,'pull')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('rear-delt',2,'pull')">3</button>
+            <span class="sets-count" id="count-rear-delt">0/3 done</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Walk -->
+  <div class="walk-card">
+    <div class="walk-inner">
+      <div class="walk-emoji">🚶</div>
+      <div>
+        <div class="walk-title">Daily Walk — Every Day</div>
+        <div class="walk-sub">30–45 min &nbsp;·&nbsp; 3.0–3.5 mph &nbsp;·&nbsp; Try 5–8% incline to burn more</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tips -->
+  <div class="tips-card">
+    <div class="tips-title">📌 Quick Tips</div>
+    <div class="tip-item">Last 2 reps of every set should be genuinely hard</div>
+    <div class="tip-item">Eat ~0.7–1g of protein per lb of bodyweight</div>
+    <div class="tip-item">Cut liquid calories first — soda, juice, alcohol</div>
+    <div class="tip-item">Results show in 4–6 weeks if you stay consistent</div>
+  </div>
+
+</div>
+
+<script>
+  const setStates = {};
+
+  // 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
+  const daySchedule = { 2: 'A', 4: 'B', 6: 'A', 0: 'B' };
+  const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  function initToday() {
+    const d = new Date().getDay();
+    const workout = daySchedule[d];
+    const banner = document.getElementById('today-banner');
+    // highlight today in schedule strip (order: Mon Tue Wed Thu Fri Sat Sun)
+    const order = [1,2,3,4,5,6,0];
+    document.querySelectorAll('.schedule-day').forEach((el, i) => {
+      if (order[i] === d) el.style.outline = '2px solid rgba(255,255,255,0.6)';
+    });
+    if (workout) {
+      const isPush = workout === 'A';
+      banner.style.background = isPush ? 'rgba(232,83,58,0.15)' : 'rgba(58,125,232,0.15)';
+      banner.style.border = isPush ? '1px solid rgba(232,83,58,0.5)' : '1px solid rgba(58,125,232,0.5)';
+      banner.style.color = isPush ? 'var(--push)' : 'var(--pull)';
+      banner.textContent = 'Today is ' + dayNames[d] + ' — ' + (isPush ? 'Push Day 💪' : 'Pull Day 🏋️');
+      switchDay(workout);
+    } else {
+      banner.style.background = 'rgba(255,255,255,0.04)';
+      banner.style.border = '1px solid var(--border)';
+      banner.style.color = 'var(--muted)';
+      banner.textContent = 'Today is ' + dayNames[d] + ' — Rest Day 🚶 Don\'t forget your walk!';
+    }
+  }
+
+  function switchDay(day) {
+    document.getElementById('day-A').style.display = day === 'A' ? 'block' : 'none';
+    document.getElementById('day-B').style.display = day === 'B' ? 'block' : 'none';
+    document.querySelectorAll('.day-btn').forEach((btn, i) => {
+      const isActive = (i === 0 && day === 'A') || (i === 1 && day === 'B');
+      btn.classList.toggle('active', isActive);
+    });
+  }
+
+  function toggleEx(id, type) {
+    const body = document.getElementById('body-' + id);
+    const chev = document.getElementById('chev-' + id);
+    const card = document.getElementById('card-' + id);
+    const isOpen = body.classList.contains('visible');
+    body.classList.toggle('visible', !isOpen);
+    chev.classList.toggle('open', !isOpen);
+    card.className = 'ex-card' + (!isOpen ? (' open-' + type) : '');
+  }
+
+  function toggleSet(exId, idx, type) {
+    if (!setStates[exId]) setStates[exId] = {};
+    setStates[exId][idx] = !setStates[exId][idx];
+
+    const btn = document.querySelectorAll(`#sets-${exId} .set-btn`)[idx];
+    btn.className = 'set-btn ' + (setStates[exId][idx] ? ('done-' + type) : 'idle');
+
+    const total = document.querySelectorAll(`#sets-${exId} .set-btn`).length;
+    const done = Object.values(setStates[exId]).filter(Boolean).length;
+    document.getElementById('count-' + exId).textContent = done + '/' + total + ' done';
+  }
+  initToday();
+</script>
+</body>
+</html>
