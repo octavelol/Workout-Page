@@ -203,6 +203,43 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .app { animation: fadeUp 0.4s ease both; }
+
+    /* Rest Timer */
+    .timer-box {
+      margin-top: 14px; border-radius: 12px; padding: 14px;
+      background: var(--card2); border: 1px solid var(--border);
+      display: none; text-align: center;
+    }
+    .timer-box.active { display: block; }
+    .timer-label {
+      font-size: 10px; letter-spacing: 2px; color: var(--dim);
+      text-transform: uppercase; margin-bottom: 8px;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    }
+    .timer-ring-wrap { position: relative; display: inline-block; margin-bottom: 10px; }
+    .timer-ring { transform: rotate(-90deg); }
+    .timer-ring-bg { fill: none; stroke: #222; stroke-width: 5; }
+    .timer-ring-fill { fill: none; stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset 0.9s linear; }
+    .timer-ring-fill.push { stroke: var(--push); }
+    .timer-ring-fill.pull { stroke: var(--pull); }
+    .timer-number {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 900;
+    }
+    .timer-number.push { color: var(--push); }
+    .timer-number.pull { color: var(--pull); }
+    .timer-msg { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+    .timer-skip {
+      background: transparent; border: 1px solid var(--dim); color: var(--muted);
+      border-radius: 8px; padding: 7px 18px; font-size: 12px; font-weight: 700;
+      cursor: pointer; font-family: 'Barlow', sans-serif; transition: all 0.15s;
+    }
+    .timer-skip:active { background: var(--border); }
+    .timer-done-msg {
+      font-size: 14px; font-weight: 800; margin-bottom: 10px;
+    }
+    .timer-done-msg.push { color: var(--push); }
+    .timer-done-msg.pull { color: var(--pull); }
   </style>
 </head>
 <body>
@@ -282,6 +319,19 @@
             <button class="set-btn idle" onclick="toggleSet('shoulder-press',3,'push')">4</button>
             <span class="sets-count" id="count-shoulder-press">0/4 done</span>
           </div>
+          <div class="timer-box" id="timer-shoulder-press">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill push" id="ring-shoulder-press" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number push" id="tnum-shoulder-press">60</div>
+            </div>
+            <div class="timer-msg" id="tmsg-shoulder-press">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('shoulder-press')">Skip Rest</button>
+          </div>
         </div>
       </div>
     </div>
@@ -313,6 +363,19 @@
             <button class="set-btn idle" onclick="toggleSet('lateral-raises',1,'push')">2</button>
             <button class="set-btn idle" onclick="toggleSet('lateral-raises',2,'push')">3</button>
             <span class="sets-count" id="count-lateral-raises">0/3 done</span>
+          </div>
+          <div class="timer-box" id="timer-lateral-raises">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill push" id="ring-lateral-raises" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number push" id="tnum-lateral-raises">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-lateral-raises">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('lateral-raises')">Skip Rest</button>
           </div>
         </div>
       </div>
@@ -347,6 +410,19 @@
             <button class="set-btn idle" onclick="toggleSet('floor-press',3,'push')">4</button>
             <span class="sets-count" id="count-floor-press">0/4 done</span>
           </div>
+          <div class="timer-box" id="timer-floor-press">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill push" id="ring-floor-press" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number push" id="tnum-floor-press">60</div>
+            </div>
+            <div class="timer-msg" id="tmsg-floor-press">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('floor-press')">Skip Rest</button>
+          </div>
         </div>
       </div>
     </div>
@@ -378,6 +454,19 @@
             <button class="set-btn idle" onclick="toggleSet('tricep-ext',1,'push')">2</button>
             <button class="set-btn idle" onclick="toggleSet('tricep-ext',2,'push')">3</button>
             <span class="sets-count" id="count-tricep-ext">0/3 done</span>
+          </div>
+          <div class="timer-box" id="timer-tricep-ext">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill push" id="ring-tricep-ext" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number push" id="tnum-tricep-ext">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-tricep-ext">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('tricep-ext')">Skip Rest</button>
           </div>
         </div>
       </div>
@@ -421,6 +510,19 @@
             <button class="set-btn idle" onclick="toggleSet('rows',3,'pull')">4</button>
             <span class="sets-count" id="count-rows">0/4 done</span>
           </div>
+          <div class="timer-box" id="timer-rows">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill pull" id="ring-rows" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number pull" id="tnum-rows">60</div>
+            </div>
+            <div class="timer-msg" id="tmsg-rows">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('rows')">Skip Rest</button>
+          </div>
         </div>
       </div>
     </div>
@@ -452,6 +554,19 @@
             <button class="set-btn idle" onclick="toggleSet('bicep-curls',1,'pull')">2</button>
             <button class="set-btn idle" onclick="toggleSet('bicep-curls',2,'pull')">3</button>
             <span class="sets-count" id="count-bicep-curls">0/3 done</span>
+          </div>
+          <div class="timer-box" id="timer-bicep-curls">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill pull" id="ring-bicep-curls" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number pull" id="tnum-bicep-curls">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-bicep-curls">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('bicep-curls')">Skip Rest</button>
           </div>
         </div>
       </div>
@@ -485,6 +600,19 @@
             <button class="set-btn idle" onclick="toggleSet('hammer-curls',2,'pull')">3</button>
             <span class="sets-count" id="count-hammer-curls">0/3 done</span>
           </div>
+          <div class="timer-box" id="timer-hammer-curls">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill pull" id="ring-hammer-curls" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number pull" id="tnum-hammer-curls">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-hammer-curls">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('hammer-curls')">Skip Rest</button>
+          </div>
         </div>
       </div>
     </div>
@@ -517,6 +645,19 @@
             <button class="set-btn idle" onclick="toggleSet('rear-delt',1,'pull')">2</button>
             <button class="set-btn idle" onclick="toggleSet('rear-delt',2,'pull')">3</button>
             <span class="sets-count" id="count-rear-delt">0/3 done</span>
+          </div>
+          <div class="timer-box" id="timer-rear-delt">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill pull" id="ring-rear-delt" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number pull" id="tnum-rear-delt">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-rear-delt">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('rear-delt')">Skip Rest</button>
           </div>
         </div>
       </div>
@@ -595,9 +736,82 @@
     card.className = 'ex-card' + (!isOpen ? (' open-' + type) : '');
   }
 
+  // Rest durations per exercise
+  const restDurations = {
+    'shoulder-press': 60, 'lateral-raises': 45, 'floor-press': 60, 'tricep-ext': 45,
+    'rows': 60, 'bicep-curls': 45, 'hammer-curls': 45, 'rear-delt': 45
+  };
+  const activeTimers = {};
+  const CIRCUMFERENCE = 2 * Math.PI * 34; // r=34
+
+  function beep() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      [0, 0.15, 0.3].forEach(offset => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.frequency.value = 880;
+        o.type = 'sine';
+        g.gain.setValueAtTime(0.4, ctx.currentTime + offset);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + offset + 0.12);
+        o.start(ctx.currentTime + offset);
+        o.stop(ctx.currentTime + offset + 0.12);
+      });
+    } catch(e) {}
+  }
+
+  function startTimer(exId, type) {
+    const duration = restDurations[exId] || 60;
+    const box = document.getElementById('timer-' + exId);
+    const ring = document.getElementById('ring-' + exId);
+    const num = document.getElementById('tnum-' + exId);
+    const msg = document.getElementById('tmsg-' + exId);
+
+    // clear any existing timer
+    if (activeTimers[exId]) clearInterval(activeTimers[exId]);
+
+    box.className = 'timer-box active';
+    msg.textContent = 'Rest up — next set coming';
+    ring.style.strokeDashoffset = '0';
+
+    let remaining = duration;
+    num.textContent = remaining;
+
+    activeTimers[exId] = setInterval(() => {
+      remaining--;
+      num.textContent = remaining;
+      const progress = (duration - remaining) / duration;
+      ring.style.strokeDashoffset = (progress * CIRCUMFERENCE).toFixed(1);
+
+      if (remaining <= 0) {
+        clearInterval(activeTimers[exId]);
+        beep();
+        num.textContent = 'GO!';
+        msg.textContent = '';
+        const doneMsg = box.querySelector('.timer-done-msg') || (() => {
+          const d = document.createElement('div');
+          d.className = 'timer-done-msg ' + type;
+          box.insertBefore(d, box.querySelector('.timer-skip'));
+          return d;
+        })();
+        doneMsg.textContent = "Time's up — start your next set! 💪";
+      }
+    }, 1000);
+  }
+
+  function skipTimer(exId) {
+    if (activeTimers[exId]) {
+      clearInterval(activeTimers[exId]);
+      activeTimers[exId] = null;
+    }
+    document.getElementById('timer-' + exId).className = 'timer-box';
+  }
+
   function toggleSet(exId, idx, type) {
     if (!setStates[exId]) setStates[exId] = {};
-    setStates[exId][idx] = !setStates[exId][idx];
+    const wasOn = setStates[exId][idx];
+    setStates[exId][idx] = !wasOn;
 
     const btn = document.querySelectorAll(`#sets-${exId} .set-btn`)[idx];
     btn.className = 'set-btn ' + (setStates[exId][idx] ? ('done-' + type) : 'idle');
@@ -605,6 +819,19 @@
     const total = document.querySelectorAll(`#sets-${exId} .set-btn`).length;
     const done = Object.values(setStates[exId]).filter(Boolean).length;
     document.getElementById('count-' + exId).textContent = done + '/' + total + ' done';
+
+    // start timer when marking a set done (not when unticking)
+    if (!wasOn) {
+      const isLastSet = done >= total;
+      if (!isLastSet) {
+        startTimer(exId, type);
+      } else {
+        // all sets done — hide timer if showing
+        skipTimer(exId);
+      }
+    } else {
+      skipTimer(exId);
+    }
   }
   initToday();
 </script>
