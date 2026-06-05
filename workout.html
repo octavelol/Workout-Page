@@ -289,14 +289,12 @@
       <h2 style="color:var(--push)">Push Day</h2>
       <p>Shoulders · Chest · Triceps &nbsp;·&nbsp; Tap any exercise to see how to do it</p>
     </div>
-
-    <!-- Shoulder Press -->
     <div class="ex-card" id="card-shoulder-press">
       <button class="ex-header" onclick="toggleEx('shoulder-press','push')">
         <div>
           <div class="ex-name">Dumbbell Shoulder Press</div>
           <div class="ex-meta">4 sets · 8–12 reps · Rest 60s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Shoulders · Triceps</span></div>
-        </div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#e8533a;letter-spacing:1px;text-transform:uppercase;">🔴 Heavy</span></div>
         <div class="ex-chevron" id="chev-shoulder-press">▾</div>
       </button>
       <div class="ex-body" id="body-shoulder-press">
@@ -336,58 +334,12 @@
       </div>
     </div>
 
-    <!-- Lateral Raises -->
-    <div class="ex-card" id="card-lateral-raises">
-      <button class="ex-header" onclick="toggleEx('lateral-raises','push')">
-        <div>
-          <div class="ex-name">Lateral Raises</div>
-          <div class="ex-meta">3 sets · 12–15 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Side Shoulders</span></div>
-        </div>
-        <div class="ex-chevron" id="chev-lateral-raises">▾</div>
-      </button>
-      <div class="ex-body" id="body-lateral-raises">
-        <div class="ex-section-label">How to do it</div>
-        <p class="ex-description">Stand with a dumbbell in each hand at your sides, palms facing your body. Keep a slight bend in your elbows. Raise both arms out to the sides simultaneously until they're level with your shoulders — like you're pouring out two jugs of water. Pause briefly at the top, then lower slowly.</p>
-        <div class="ex-section-label">Step by step</div>
-        <ul class="steps">
-          <li><div class="step-num push">1</div><div class="step-text">Stand tall, dumbbells at your sides</div></li>
-          <li><div class="step-num push">2</div><div class="step-text">Slight bend in elbows, palms facing in</div></li>
-          <li><div class="step-num push">3</div><div class="step-text">Raise arms out to the sides to shoulder height</div></li>
-          <li><div class="step-num push">4</div><div class="step-text">Hold 1 second at top, lower slowly</div></li>
-        </ul>
-        <div class="form-tip push">💡 <strong>Form tip:</strong> Raise to shoulder height only — going higher shifts the work off your shoulders.</div>
-        <div class="set-tracker">
-          <div class="ex-section-label">Tap to log sets</div>
-          <div class="sets-row" id="sets-lateral-raises">
-            <button class="set-btn idle" onclick="toggleSet('lateral-raises',0,'push')">1</button>
-            <button class="set-btn idle" onclick="toggleSet('lateral-raises',1,'push')">2</button>
-            <button class="set-btn idle" onclick="toggleSet('lateral-raises',2,'push')">3</button>
-            <span class="sets-count" id="count-lateral-raises">0/3 done</span>
-          </div>
-          <div class="timer-box" id="timer-lateral-raises">
-            <div class="timer-label">Rest Timer</div>
-            <div class="timer-ring-wrap">
-              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
-                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
-                <circle class="timer-ring-fill push" id="ring-lateral-raises" cx="40" cy="40" r="34"
-                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
-              </svg>
-              <div class="timer-number push" id="tnum-lateral-raises">45</div>
-            </div>
-            <div class="timer-msg" id="tmsg-lateral-raises">Rest up — next set coming</div>
-            <button class="timer-skip" onclick="skipTimer('lateral-raises')">Skip Rest</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Floor Press -->
     <div class="ex-card" id="card-floor-press">
       <button class="ex-header" onclick="toggleEx('floor-press','push')">
         <div>
           <div class="ex-name">Floor Press</div>
           <div class="ex-meta">4 sets · 8–12 reps · Rest 60s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Chest · Triceps · Shoulders</span></div>
-        </div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#e8533a;letter-spacing:1px;text-transform:uppercase;">🔴 Heavy</span></div>
         <div class="ex-chevron" id="chev-floor-press">▾</div>
       </button>
       <div class="ex-body" id="body-floor-press">
@@ -427,58 +379,12 @@
       </div>
     </div>
 
-    <!-- Overhead Tricep Extension -->
-    <div class="ex-card" id="card-tricep-ext">
-      <button class="ex-header" onclick="toggleEx('tricep-ext','push')">
-        <div>
-          <div class="ex-name">Overhead Tricep Extension</div>
-          <div class="ex-meta">3 sets · 10–12 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Triceps</span></div>
-        </div>
-        <div class="ex-chevron" id="chev-tricep-ext">▾</div>
-      </button>
-      <div class="ex-body" id="body-tricep-ext">
-        <div class="ex-section-label">How to do it</div>
-        <p class="ex-description">Sit or stand. Hold one dumbbell with both hands, cupping the top plate, and lift it overhead with arms straight. Keeping your upper arms still and close to your head, bend at the elbows to slowly lower the dumbbell behind your head. When you feel a stretch in your triceps, press back up to straight arms.</p>
-        <div class="ex-section-label">Step by step</div>
-        <ul class="steps">
-          <li><div class="step-num push">1</div><div class="step-text">Hold one dumbbell with both hands overhead</div></li>
-          <li><div class="step-num push">2</div><div class="step-text">Upper arms stay still and close to your head</div></li>
-          <li><div class="step-num push">3</div><div class="step-text">Bend elbows to lower weight behind your head</div></li>
-          <li><div class="step-num push">4</div><div class="step-text">Press back up to straight arms</div></li>
-        </ul>
-        <div class="form-tip push">💡 <strong>Form tip:</strong> Keep your elbows pointed forward — don't let them flare out to the sides.</div>
-        <div class="set-tracker">
-          <div class="ex-section-label">Tap to log sets</div>
-          <div class="sets-row" id="sets-tricep-ext">
-            <button class="set-btn idle" onclick="toggleSet('tricep-ext',0,'push')">1</button>
-            <button class="set-btn idle" onclick="toggleSet('tricep-ext',1,'push')">2</button>
-            <button class="set-btn idle" onclick="toggleSet('tricep-ext',2,'push')">3</button>
-            <span class="sets-count" id="count-tricep-ext">0/3 done</span>
-          </div>
-          <div class="timer-box" id="timer-tricep-ext">
-            <div class="timer-label">Rest Timer</div>
-            <div class="timer-ring-wrap">
-              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
-                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
-                <circle class="timer-ring-fill push" id="ring-tricep-ext" cx="40" cy="40" r="34"
-                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
-              </svg>
-              <div class="timer-number push" id="tnum-tricep-ext">45</div>
-            </div>
-            <div class="timer-msg" id="tmsg-tricep-ext">Rest up — next set coming</div>
-            <button class="timer-skip" onclick="skipTimer('tricep-ext')">Skip Rest</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Wood Chops -->
     <div class="ex-card" id="card-wood-chops">
       <button class="ex-header" onclick="toggleEx('wood-chops','push')">
         <div>
           <div class="ex-name">Dumbbell Wood Chops</div>
           <div class="ex-meta">3 sets · 10–12 reps each side · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Core · Shoulders · Hips</span></div>
-        </div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#f0a500;letter-spacing:1px;text-transform:uppercase;">🟡 Medium</span></div>
         <div class="ex-chevron" id="chev-wood-chops">▾</div>
       </button>
       <div class="ex-body" id="body-wood-chops">
@@ -518,13 +424,100 @@
       </div>
     </div>
 
-    <!-- Russian Twists -->
+    <div class="ex-card" id="card-lateral-raises">
+      <button class="ex-header" onclick="toggleEx('lateral-raises','push')">
+        <div>
+          <div class="ex-name">Lateral Raises</div>
+          <div class="ex-meta">3 sets · 12–15 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Side Shoulders</span></div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#f0a500;letter-spacing:1px;text-transform:uppercase;">🟡 Medium</span></div>
+        <div class="ex-chevron" id="chev-lateral-raises">▾</div>
+      </button>
+      <div class="ex-body" id="body-lateral-raises">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Stand with a dumbbell in each hand at your sides, palms facing your body. Keep a slight bend in your elbows. Raise both arms out to the sides simultaneously until they're level with your shoulders — like you're pouring out two jugs of water. Pause briefly at the top, then lower slowly.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num push">1</div><div class="step-text">Stand tall, dumbbells at your sides</div></li>
+          <li><div class="step-num push">2</div><div class="step-text">Slight bend in elbows, palms facing in</div></li>
+          <li><div class="step-num push">3</div><div class="step-text">Raise arms out to the sides to shoulder height</div></li>
+          <li><div class="step-num push">4</div><div class="step-text">Hold 1 second at top, lower slowly</div></li>
+        </ul>
+        <div class="form-tip push">💡 <strong>Form tip:</strong> Raise to shoulder height only — going higher shifts the work off your shoulders.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-lateral-raises">
+            <button class="set-btn idle" onclick="toggleSet('lateral-raises',0,'push')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('lateral-raises',1,'push')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('lateral-raises',2,'push')">3</button>
+            <span class="sets-count" id="count-lateral-raises">0/3 done</span>
+          </div>
+          <div class="timer-box" id="timer-lateral-raises">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill push" id="ring-lateral-raises" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number push" id="tnum-lateral-raises">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-lateral-raises">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('lateral-raises')">Skip Rest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-card" id="card-tricep-ext">
+      <button class="ex-header" onclick="toggleEx('tricep-ext','push')">
+        <div>
+          <div class="ex-name">Overhead Tricep Extension</div>
+          <div class="ex-meta">3 sets · 10–12 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Triceps</span></div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#4caf7d;letter-spacing:1px;text-transform:uppercase;">🟢 Light</span></div>
+        <div class="ex-chevron" id="chev-tricep-ext">▾</div>
+      </button>
+      <div class="ex-body" id="body-tricep-ext">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Sit or stand. Hold one dumbbell with both hands, cupping the top plate, and lift it overhead with arms straight. Keeping your upper arms still and close to your head, bend at the elbows to slowly lower the dumbbell behind your head. When you feel a stretch in your triceps, press back up to straight arms.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num push">1</div><div class="step-text">Hold one dumbbell with both hands overhead</div></li>
+          <li><div class="step-num push">2</div><div class="step-text">Upper arms stay still and close to your head</div></li>
+          <li><div class="step-num push">3</div><div class="step-text">Bend elbows to lower weight behind your head</div></li>
+          <li><div class="step-num push">4</div><div class="step-text">Press back up to straight arms</div></li>
+        </ul>
+        <div class="form-tip push">💡 <strong>Form tip:</strong> Keep your elbows pointed forward — don't let them flare out to the sides.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-tricep-ext">
+            <button class="set-btn idle" onclick="toggleSet('tricep-ext',0,'push')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('tricep-ext',1,'push')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('tricep-ext',2,'push')">3</button>
+            <span class="sets-count" id="count-tricep-ext">0/3 done</span>
+          </div>
+          <div class="timer-box" id="timer-tricep-ext">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill push" id="ring-tricep-ext" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number push" id="tnum-tricep-ext">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-tricep-ext">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('tricep-ext')">Skip Rest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="ex-card" id="card-russian-twists">
       <button class="ex-header" onclick="toggleEx('russian-twists','push')">
         <div>
           <div class="ex-name">Dumbbell Russian Twists</div>
           <div class="ex-meta">3 sets · 12–16 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--push)">Core · Obliques</span></div>
-        </div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#4caf7d;letter-spacing:1px;text-transform:uppercase;">🟢 Light</span></div>
         <div class="ex-chevron" id="chev-russian-twists">▾</div>
       </button>
       <div class="ex-body" id="body-russian-twists">
@@ -571,197 +564,12 @@
       <h2 style="color:var(--pull)">Pull Day</h2>
       <p>Back · Biceps &nbsp;·&nbsp; Tap any exercise to see how to do it</p>
     </div>
-
-    <!-- Bent-Over Rows -->
-    <div class="ex-card" id="card-rows">
-      <button class="ex-header" onclick="toggleEx('rows','pull')">
-        <div>
-          <div class="ex-name">Bent-Over Rows</div>
-          <div class="ex-meta">4 sets · 8–12 reps · Rest 60s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Back · Biceps</span></div>
-        </div>
-        <div class="ex-chevron" id="chev-rows">▾</div>
-      </button>
-      <div class="ex-body" id="body-rows">
-        <div class="ex-section-label">How to do it</div>
-        <p class="ex-description">Stand with feet shoulder-width apart, a dumbbell in each hand. Push your hips back and hinge forward until your torso is roughly 45° to the floor — like you're about to pick something up off a low table. Let the dumbbells hang straight down. Pull both dumbbells up toward your hips, squeezing your shoulder blades together at the top. Lower slowly.</p>
-        <div class="ex-section-label">Step by step</div>
-        <ul class="steps">
-          <li><div class="step-num pull">1</div><div class="step-text">Stand feet shoulder-width, dumbbells in hand</div></li>
-          <li><div class="step-num pull">2</div><div class="step-text">Hinge forward at hips ~45°, back flat</div></li>
-          <li><div class="step-num pull">3</div><div class="step-text">Let dumbbells hang straight down</div></li>
-          <li><div class="step-num pull">4</div><div class="step-text">Pull up toward your hips, squeeze shoulder blades</div></li>
-          <li><div class="step-num pull">5</div><div class="step-text">Lower slowly and repeat</div></li>
-        </ul>
-        <div class="form-tip pull">💡 <strong>Form tip:</strong> Pull toward your hip, not your chest — that keeps the back muscles doing the work.</div>
-        <div class="set-tracker">
-          <div class="ex-section-label">Tap to log sets</div>
-          <div class="sets-row" id="sets-rows">
-            <button class="set-btn idle" onclick="toggleSet('rows',0,'pull')">1</button>
-            <button class="set-btn idle" onclick="toggleSet('rows',1,'pull')">2</button>
-            <button class="set-btn idle" onclick="toggleSet('rows',2,'pull')">3</button>
-            <button class="set-btn idle" onclick="toggleSet('rows',3,'pull')">4</button>
-            <span class="sets-count" id="count-rows">0/4 done</span>
-          </div>
-          <div class="timer-box" id="timer-rows">
-            <div class="timer-label">Rest Timer</div>
-            <div class="timer-ring-wrap">
-              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
-                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
-                <circle class="timer-ring-fill pull" id="ring-rows" cx="40" cy="40" r="34"
-                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
-              </svg>
-              <div class="timer-number pull" id="tnum-rows">60</div>
-            </div>
-            <div class="timer-msg" id="tmsg-rows">Rest up — next set coming</div>
-            <button class="timer-skip" onclick="skipTimer('rows')">Skip Rest</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bicep Curls -->
-    <div class="ex-card" id="card-bicep-curls">
-      <button class="ex-header" onclick="toggleEx('bicep-curls','pull')">
-        <div>
-          <div class="ex-name">Bicep Curls</div>
-          <div class="ex-meta">3 sets · 10–12 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Biceps</span></div>
-        </div>
-        <div class="ex-chevron" id="chev-bicep-curls">▾</div>
-      </button>
-      <div class="ex-body" id="body-bicep-curls">
-        <div class="ex-section-label">How to do it</div>
-        <p class="ex-description">Stand with feet shoulder-width apart, a dumbbell in each hand, arms hanging at your sides with palms facing forward. Keeping your upper arms completely still against your sides, curl both dumbbells up toward your shoulders by bending at the elbow. Squeeze your bicep at the top, then lower slowly all the way back down.</p>
-        <div class="ex-section-label">Step by step</div>
-        <ul class="steps">
-          <li><div class="step-num pull">1</div><div class="step-text">Stand tall, dumbbells at sides, palms forward</div></li>
-          <li><div class="step-num pull">2</div><div class="step-text">Pin your upper arms against your sides — they don't move</div></li>
-          <li><div class="step-num pull">3</div><div class="step-text">Curl both dumbbells up to your shoulders</div></li>
-          <li><div class="step-num pull">4</div><div class="step-text">Squeeze at the top, then lower all the way down</div></li>
-        </ul>
-        <div class="form-tip pull">💡 <strong>Form tip:</strong> Don't swing your back — if you have to rock to lift it, the weight is too heavy.</div>
-        <div class="set-tracker">
-          <div class="ex-section-label">Tap to log sets</div>
-          <div class="sets-row" id="sets-bicep-curls">
-            <button class="set-btn idle" onclick="toggleSet('bicep-curls',0,'pull')">1</button>
-            <button class="set-btn idle" onclick="toggleSet('bicep-curls',1,'pull')">2</button>
-            <button class="set-btn idle" onclick="toggleSet('bicep-curls',2,'pull')">3</button>
-            <span class="sets-count" id="count-bicep-curls">0/3 done</span>
-          </div>
-          <div class="timer-box" id="timer-bicep-curls">
-            <div class="timer-label">Rest Timer</div>
-            <div class="timer-ring-wrap">
-              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
-                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
-                <circle class="timer-ring-fill pull" id="ring-bicep-curls" cx="40" cy="40" r="34"
-                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
-              </svg>
-              <div class="timer-number pull" id="tnum-bicep-curls">45</div>
-            </div>
-            <div class="timer-msg" id="tmsg-bicep-curls">Rest up — next set coming</div>
-            <button class="timer-skip" onclick="skipTimer('bicep-curls')">Skip Rest</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Hammer Curls -->
-    <div class="ex-card" id="card-hammer-curls">
-      <button class="ex-header" onclick="toggleEx('hammer-curls','pull')">
-        <div>
-          <div class="ex-name">Hammer Curls</div>
-          <div class="ex-meta">3 sets · 10–12 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Outer Biceps · Forearms</span></div>
-        </div>
-        <div class="ex-chevron" id="chev-hammer-curls">▾</div>
-      </button>
-      <div class="ex-body" id="body-hammer-curls">
-        <div class="ex-section-label">How to do it</div>
-        <p class="ex-description">Same starting position as a regular curl, but rotate your wrists so your palms face each other — thumbs pointing up, like you're holding hammers. Keeping upper arms still, curl both dumbbells up to your shoulders. Lower slowly. The neutral grip shifts work to the outer bicep and forearms, giving your arms that fuller look.</p>
-        <div class="ex-section-label">Step by step</div>
-        <ul class="steps">
-          <li><div class="step-num pull">1</div><div class="step-text">Stand tall, dumbbells at sides, thumbs pointing up</div></li>
-          <li><div class="step-num pull">2</div><div class="step-text">Upper arms stay pinned to your sides</div></li>
-          <li><div class="step-num pull">3</div><div class="step-text">Curl up to shoulder height</div></li>
-          <li><div class="step-num pull">4</div><div class="step-text">Lower slowly all the way down</div></li>
-        </ul>
-        <div class="form-tip pull">💡 <strong>Form tip:</strong> Same motion as a regular curl, just with thumbs up. Hits a different part of the bicep.</div>
-        <div class="set-tracker">
-          <div class="ex-section-label">Tap to log sets</div>
-          <div class="sets-row" id="sets-hammer-curls">
-            <button class="set-btn idle" onclick="toggleSet('hammer-curls',0,'pull')">1</button>
-            <button class="set-btn idle" onclick="toggleSet('hammer-curls',1,'pull')">2</button>
-            <button class="set-btn idle" onclick="toggleSet('hammer-curls',2,'pull')">3</button>
-            <span class="sets-count" id="count-hammer-curls">0/3 done</span>
-          </div>
-          <div class="timer-box" id="timer-hammer-curls">
-            <div class="timer-label">Rest Timer</div>
-            <div class="timer-ring-wrap">
-              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
-                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
-                <circle class="timer-ring-fill pull" id="ring-hammer-curls" cx="40" cy="40" r="34"
-                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
-              </svg>
-              <div class="timer-number pull" id="tnum-hammer-curls">45</div>
-            </div>
-            <div class="timer-msg" id="tmsg-hammer-curls">Rest up — next set coming</div>
-            <button class="timer-skip" onclick="skipTimer('hammer-curls')">Skip Rest</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Rear Delt Fly -->
-    <div class="ex-card" id="card-rear-delt">
-      <button class="ex-header" onclick="toggleEx('rear-delt','pull')">
-        <div>
-          <div class="ex-name">Rear Delt Fly</div>
-          <div class="ex-meta">3 sets · 12–15 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Rear Shoulders · Upper Back</span></div>
-        </div>
-        <div class="ex-chevron" id="chev-rear-delt">▾</div>
-      </button>
-      <div class="ex-body" id="body-rear-delt">
-        <div class="ex-section-label">How to do it</div>
-        <p class="ex-description">Stand with feet shoulder-width apart. Hinge forward at the hips until your torso is nearly parallel to the floor — more bent than the row. Let the dumbbells hang below your chest with a slight bend in your elbows. Raise both arms out to the sides like wings — leading with your elbows — until they're level with your shoulders. Lower slowly.</p>
-        <div class="ex-section-label">Step by step</div>
-        <ul class="steps">
-          <li><div class="step-num pull">1</div><div class="step-text">Hinge forward — torso nearly parallel to floor</div></li>
-          <li><div class="step-num pull">2</div><div class="step-text">Dumbbells hang below your chest, slight elbow bend</div></li>
-          <li><div class="step-num pull">3</div><div class="step-text">Raise arms out to sides like wings</div></li>
-          <li><div class="step-num pull">4</div><div class="step-text">Squeeze shoulder blades at the top</div></li>
-          <li><div class="step-num pull">5</div><div class="step-text">Lower slowly</div></li>
-        </ul>
-        <div class="form-tip pull">💡 <strong>Form tip:</strong> Light weight here — most people go too heavy and their back takes over.</div>
-        <div class="set-tracker">
-          <div class="ex-section-label">Tap to log sets</div>
-          <div class="sets-row" id="sets-rear-delt">
-            <button class="set-btn idle" onclick="toggleSet('rear-delt',0,'pull')">1</button>
-            <button class="set-btn idle" onclick="toggleSet('rear-delt',1,'pull')">2</button>
-            <button class="set-btn idle" onclick="toggleSet('rear-delt',2,'pull')">3</button>
-            <span class="sets-count" id="count-rear-delt">0/3 done</span>
-          </div>
-          <div class="timer-box" id="timer-rear-delt">
-            <div class="timer-label">Rest Timer</div>
-            <div class="timer-ring-wrap">
-              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
-                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
-                <circle class="timer-ring-fill pull" id="ring-rear-delt" cx="40" cy="40" r="34"
-                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
-              </svg>
-              <div class="timer-number pull" id="tnum-rear-delt">45</div>
-            </div>
-            <div class="timer-msg" id="tmsg-rear-delt">Rest up — next set coming</div>
-            <button class="timer-skip" onclick="skipTimer('rear-delt')">Skip Rest</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Dumbbell Deadlifts -->
     <div class="ex-card" id="card-deadlifts">
       <button class="ex-header" onclick="toggleEx('deadlifts','pull')">
         <div>
           <div class="ex-name">Dumbbell Deadlifts</div>
           <div class="ex-meta">4 sets · 8–10 reps · Rest 60s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Back · Glutes · Hamstrings</span></div>
-        </div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#e8533a;letter-spacing:1px;text-transform:uppercase;">🔴 Heavy</span></div>
         <div class="ex-chevron" id="chev-deadlifts">▾</div>
       </button>
       <div class="ex-body" id="body-deadlifts">
@@ -802,13 +610,58 @@
       </div>
     </div>
 
-    <!-- Dumbbell Shrugs -->
+    <div class="ex-card" id="card-rows">
+      <button class="ex-header" onclick="toggleEx('rows','pull')">
+        <div>
+          <div class="ex-name">Bent-Over Rows</div>
+          <div class="ex-meta">4 sets · 8–12 reps · Rest 60s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Back · Biceps</span></div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#e8533a;letter-spacing:1px;text-transform:uppercase;">🔴 Heavy</span></div>
+        <div class="ex-chevron" id="chev-rows">▾</div>
+      </button>
+      <div class="ex-body" id="body-rows">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Stand with feet shoulder-width apart, a dumbbell in each hand. Push your hips back and hinge forward until your torso is roughly 45° to the floor — like you're about to pick something up off a low table. Let the dumbbells hang straight down. Pull both dumbbells up toward your hips, squeezing your shoulder blades together at the top. Lower slowly.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num pull">1</div><div class="step-text">Stand feet shoulder-width, dumbbells in hand</div></li>
+          <li><div class="step-num pull">2</div><div class="step-text">Hinge forward at hips ~45°, back flat</div></li>
+          <li><div class="step-num pull">3</div><div class="step-text">Let dumbbells hang straight down</div></li>
+          <li><div class="step-num pull">4</div><div class="step-text">Pull up toward your hips, squeeze shoulder blades</div></li>
+          <li><div class="step-num pull">5</div><div class="step-text">Lower slowly and repeat</div></li>
+        </ul>
+        <div class="form-tip pull">💡 <strong>Form tip:</strong> Pull toward your hip, not your chest — that keeps the back muscles doing the work.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-rows">
+            <button class="set-btn idle" onclick="toggleSet('rows',0,'pull')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('rows',1,'pull')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('rows',2,'pull')">3</button>
+            <button class="set-btn idle" onclick="toggleSet('rows',3,'pull')">4</button>
+            <span class="sets-count" id="count-rows">0/4 done</span>
+          </div>
+          <div class="timer-box" id="timer-rows">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill pull" id="ring-rows" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number pull" id="tnum-rows">60</div>
+            </div>
+            <div class="timer-msg" id="tmsg-rows">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('rows')">Skip Rest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="ex-card" id="card-shrugs">
       <button class="ex-header" onclick="toggleEx('shrugs','pull')">
         <div>
           <div class="ex-name">Dumbbell Shrugs</div>
           <div class="ex-meta">3 sets · 12–15 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Traps · Upper Back</span></div>
-        </div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#f0a500;letter-spacing:1px;text-transform:uppercase;">🟡 Medium</span></div>
         <div class="ex-chevron" id="chev-shrugs">▾</div>
       </button>
       <div class="ex-body" id="body-shrugs">
@@ -842,6 +695,139 @@
             </div>
             <div class="timer-msg" id="tmsg-shrugs">Rest up — next set coming</div>
             <button class="timer-skip" onclick="skipTimer('shrugs')">Skip Rest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-card" id="card-bicep-curls">
+      <button class="ex-header" onclick="toggleEx('bicep-curls','pull')">
+        <div>
+          <div class="ex-name">Bicep Curls</div>
+          <div class="ex-meta">3 sets · 10–12 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Biceps</span></div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#f0a500;letter-spacing:1px;text-transform:uppercase;">🟡 Medium</span></div>
+        <div class="ex-chevron" id="chev-bicep-curls">▾</div>
+      </button>
+      <div class="ex-body" id="body-bicep-curls">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Stand with feet shoulder-width apart, a dumbbell in each hand, arms hanging at your sides with palms facing forward. Keeping your upper arms completely still against your sides, curl both dumbbells up toward your shoulders by bending at the elbow. Squeeze your bicep at the top, then lower slowly all the way back down.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num pull">1</div><div class="step-text">Stand tall, dumbbells at sides, palms forward</div></li>
+          <li><div class="step-num pull">2</div><div class="step-text">Pin your upper arms against your sides — they don't move</div></li>
+          <li><div class="step-num pull">3</div><div class="step-text">Curl both dumbbells up to your shoulders</div></li>
+          <li><div class="step-num pull">4</div><div class="step-text">Squeeze at the top, then lower all the way down</div></li>
+        </ul>
+        <div class="form-tip pull">💡 <strong>Form tip:</strong> Don't swing your back — if you have to rock to lift it, the weight is too heavy.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-bicep-curls">
+            <button class="set-btn idle" onclick="toggleSet('bicep-curls',0,'pull')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('bicep-curls',1,'pull')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('bicep-curls',2,'pull')">3</button>
+            <span class="sets-count" id="count-bicep-curls">0/3 done</span>
+          </div>
+          <div class="timer-box" id="timer-bicep-curls">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill pull" id="ring-bicep-curls" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number pull" id="tnum-bicep-curls">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-bicep-curls">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('bicep-curls')">Skip Rest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-card" id="card-hammer-curls">
+      <button class="ex-header" onclick="toggleEx('hammer-curls','pull')">
+        <div>
+          <div class="ex-name">Hammer Curls</div>
+          <div class="ex-meta">3 sets · 10–12 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Outer Biceps · Forearms</span></div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#f0a500;letter-spacing:1px;text-transform:uppercase;">🟡 Medium</span></div>
+        <div class="ex-chevron" id="chev-hammer-curls">▾</div>
+      </button>
+      <div class="ex-body" id="body-hammer-curls">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Same starting position as a regular curl, but rotate your wrists so your palms face each other — thumbs pointing up, like you're holding hammers. Keeping upper arms still, curl both dumbbells up to your shoulders. Lower slowly. The neutral grip shifts work to the outer bicep and forearms, giving your arms that fuller look.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num pull">1</div><div class="step-text">Stand tall, dumbbells at sides, thumbs pointing up</div></li>
+          <li><div class="step-num pull">2</div><div class="step-text">Upper arms stay pinned to your sides</div></li>
+          <li><div class="step-num pull">3</div><div class="step-text">Curl up to shoulder height</div></li>
+          <li><div class="step-num pull">4</div><div class="step-text">Lower slowly all the way down</div></li>
+        </ul>
+        <div class="form-tip pull">💡 <strong>Form tip:</strong> Same motion as a regular curl, just with thumbs up. Hits a different part of the bicep.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-hammer-curls">
+            <button class="set-btn idle" onclick="toggleSet('hammer-curls',0,'pull')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('hammer-curls',1,'pull')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('hammer-curls',2,'pull')">3</button>
+            <span class="sets-count" id="count-hammer-curls">0/3 done</span>
+          </div>
+          <div class="timer-box" id="timer-hammer-curls">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill pull" id="ring-hammer-curls" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number pull" id="tnum-hammer-curls">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-hammer-curls">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('hammer-curls')">Skip Rest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-card" id="card-rear-delt">
+      <button class="ex-header" onclick="toggleEx('rear-delt','pull')">
+        <div>
+          <div class="ex-name">Rear Delt Fly</div>
+          <div class="ex-meta">3 sets · 12–15 reps · Rest 45s &nbsp;·&nbsp; <span class="ex-muscles" style="color:var(--pull)">Rear Shoulders · Upper Back</span></div>
+        <span style="margin-left:6px;font-size:10px;font-weight:700;color:#4caf7d;letter-spacing:1px;text-transform:uppercase;">🟢 Light</span></div>
+        <div class="ex-chevron" id="chev-rear-delt">▾</div>
+      </button>
+      <div class="ex-body" id="body-rear-delt">
+        <div class="ex-section-label">How to do it</div>
+        <p class="ex-description">Stand with feet shoulder-width apart. Hinge forward at the hips until your torso is nearly parallel to the floor — more bent than the row. Let the dumbbells hang below your chest with a slight bend in your elbows. Raise both arms out to the sides like wings — leading with your elbows — until they're level with your shoulders. Lower slowly.</p>
+        <div class="ex-section-label">Step by step</div>
+        <ul class="steps">
+          <li><div class="step-num pull">1</div><div class="step-text">Hinge forward — torso nearly parallel to floor</div></li>
+          <li><div class="step-num pull">2</div><div class="step-text">Dumbbells hang below your chest, slight elbow bend</div></li>
+          <li><div class="step-num pull">3</div><div class="step-text">Raise arms out to sides like wings</div></li>
+          <li><div class="step-num pull">4</div><div class="step-text">Squeeze shoulder blades at the top</div></li>
+          <li><div class="step-num pull">5</div><div class="step-text">Lower slowly</div></li>
+        </ul>
+        <div class="form-tip pull">💡 <strong>Form tip:</strong> Light weight here — most people go too heavy and their back takes over.</div>
+        <div class="set-tracker">
+          <div class="ex-section-label">Tap to log sets</div>
+          <div class="sets-row" id="sets-rear-delt">
+            <button class="set-btn idle" onclick="toggleSet('rear-delt',0,'pull')">1</button>
+            <button class="set-btn idle" onclick="toggleSet('rear-delt',1,'pull')">2</button>
+            <button class="set-btn idle" onclick="toggleSet('rear-delt',2,'pull')">3</button>
+            <span class="sets-count" id="count-rear-delt">0/3 done</span>
+          </div>
+          <div class="timer-box" id="timer-rear-delt">
+            <div class="timer-label">Rest Timer</div>
+            <div class="timer-ring-wrap">
+              <svg class="timer-ring" width="80" height="80" viewBox="0 0 80 80">
+                <circle class="timer-ring-bg" cx="40" cy="40" r="34"/>
+                <circle class="timer-ring-fill pull" id="ring-rear-delt" cx="40" cy="40" r="34"
+                  stroke-dasharray="213.6" stroke-dashoffset="0"/>
+              </svg>
+              <div class="timer-number pull" id="tnum-rear-delt">45</div>
+            </div>
+            <div class="timer-msg" id="tmsg-rear-delt">Rest up — next set coming</div>
+            <button class="timer-skip" onclick="skipTimer('rear-delt')">Skip Rest</button>
           </div>
         </div>
       </div>
